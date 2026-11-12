@@ -1,96 +1,110 @@
-# Inheritance - Package 1
+# Inheritance – Basic Examples in Java
 
 ## 1. Introduction
 
-This package contains Java programs that demonstrate the basic implementation of inheritance.
+This package contains basic Java inheritance examples using real-world relationships such as Person, Employee, Vehicle and Car.
 
-It explains how a child class can reuse the properties and methods of a parent class using the `extends` keyword.
+Inheritance is one of the four main principles of Object-Oriented Programming (OOP).
 
-## 2. Concepts Covered
+It allows a child class to acquire the properties and methods of a parent class using the `extends` keyword.
 
-- Single Inheritance
-- Parent Class and Child Class
-- Code Reusability
-- Method Inheritance
-- Accessing Parent Class Methods
-- Real-Time Inheritance Examples
+## 2. Why Inheritance?
 
-## 3. Package Structure
+- To reuse existing class properties and methods.
+- To reduce code duplication.
+- To extend the functionality of existing classes.
+- To establish parent-child relationships.
+- To achieve method overriding and runtime polymorphism.
+
+## 3. Inheritance Flow
 
 ```text
-inheritance/
-│
-├── Car.java
-├── Employee.java
-├── Person.java
-├── TaskQues.java
-├── TestEmployee.java
-├── TestVehicle.java
-└── Vehicle.java
+       ┌──────────────────────┐
+       │     Parent Class     │
+       │                      │
+       │     Variables        │
+       │     Methods          │
+       └──────────┬───────────┘
+                  │
+                  │ extends
+                  ↓
+       ┌──────────────────────┐
+       │     Child Class      │
+       │                      │
+       │ Inherited Members    │
+       │ Own Variables        │
+       │ Own Methods          │
+       └──────────────────────┘
 ```
 
-## 4. Class Relationship Diagrams
+## 4. Topics Covered
 
-### 4.1 Vehicle and Car
+### 4.1 Person and Employee
 
-A Car is a Vehicle. The `Car` class inherits the common properties and methods of the `Vehicle` class.
+This example demonstrates how an Employee class can inherit common details from a Person class.
+
+- `Person` – Parent class.
+- `Employee` – Child class.
+- `TestEmployee` – Executes and tests the inheritance example.
+
+### 4.2 Vehicle and Car
+
+This example demonstrates inheritance using a vehicle-related relationship.
+
+- `Vehicle` – Parent class.
+- `Car` – Child class.
+- `TestVehicle` – Executes and tests the vehicle inheritance example.
+
+**Flowchart:**
 
 ```text
        ┌──────────────────────┐
        │      Vehicle         │
        │                      │
-       │   Common Features    │
-       │   Vehicle Methods    │
+       │   Common Details     │
+       │   Common Methods     │
        └──────────┬───────────┘
                   │
-                  │ extends
                   ↓
        ┌──────────────────────┐
        │        Car           │
        │                      │
-       │   Car Properties     │
-       │   Car Methods        │
+       │   Inherited Details  │
+       │   Car-specific Data  │
        └──────────────────────┘
 ```
 
-### 4.2 Person and Employee
+### 4.3 Inheritance Practice Question
 
-An Employee is a Person. The `Employee` class can inherit common person-related details from the `Person` class.
+`TaskQues.java` contains an inheritance-based practice question to understand and apply inheritance concepts.
 
-```text
-       ┌──────────────────────┐
-       │       Person         │
-       │                      │
-       │   Name               │
-       │   Age                │
-       │   Person Methods     │
-       └──────────┬───────────┘
-                  │
-                  │ extends
-                  ↓
-       ┌──────────────────────┐
-       │      Employee        │
-       │                      │
-       │   Employee Details  │
-       │   Employee Methods  │
-       └──────────────────────┘
-```
+## 5. Important Concepts
 
-## 5. Understanding the Test Classes
-
-Test classes are used to create objects and execute the methods of the respective classes.
-
-- `TestVehicle.java` - Used to test the Vehicle and Car inheritance example.
-- `TestEmployee.java` - Used to test the Person and Employee inheritance example.
-- `TaskQues.java` - Contains inheritance-related practice questions or programs.
+| Concept | Description |
+|---|---|
+| Parent Class | Class whose properties are inherited |
+| Child Class | Class that inherits another class |
+| extends | Keyword used for class inheritance |
+| Code Reusability | Reusing existing class functionality |
+| Method Overriding | Providing a new implementation of an inherited method |
 
 ## 6. Learning Outcomes
 
 After completing this package, we can:
 
-- Understand basic inheritance implementation.
+- Understand basic inheritance in Java.
 - Identify parent and child classes.
 - Use the `extends` keyword.
-- Reuse parent class methods in child classes.
-- Understand inheritance through Vehicle-Car and Person-Employee examples.
-- Create objects and test inherited methods.
+- Reuse parent class variables and methods.
+- Understand inheritance through Person–Employee and Vehicle–Car examples.
+- Execute and test inheritance programs.
+
+## 7. Technologies Used
+
+- Java
+- Object-Oriented Programming (OOP)
+- Eclipse IDE
+
+## 8. Conclusion
+
+This package provides practical examples of basic inheritance in Java. It helps understand how one class can reuse and extend the functionality of another class.
