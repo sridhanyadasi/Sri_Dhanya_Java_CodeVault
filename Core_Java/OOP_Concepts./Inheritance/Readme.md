@@ -4,47 +4,48 @@
 
 Inheritance is one of the four main principles of Object-Oriented Programming (OOP) in Java.
 
-Inheritance is a mechanism in which one class acquires the properties and methods of another class.
+Inheritance allows one class to acquire the properties and methods of another class.
 
-The class whose properties and methods are inherited is called the **Parent Class (Superclass)**.
+The class whose properties are inherited is called the **Parent Class (Super Class)**.
 
-The class that inherits those properties and methods is called the **Child Class (Subclass)**.
+The class that inherits those properties is called the **Child Class (Sub Class)**.
 
-Java uses the `extends` keyword to implement inheritance between classes.
+Inheritance helps us reuse existing code and establish relationships between classes.
 
-### Example
-
-Consider a Vehicle and Car.
-
-- Vehicle is a parent class.
-- Car is a child class.
-- A Car can use common properties and methods defined in Vehicle.
-- Car can also have its own additional properties and methods.
-
-## 2. Why Do We Use Inheritance?
+### Why Do We Use Inheritance?
 
 - To achieve code reusability.
 - To reduce code duplication.
-- To establish relationships between classes.
-- To extend the functionality of existing classes.
-- To make applications easier to maintain.
-- To support runtime polymorphism through method overriding.
+- To extend existing class functionality.
+- To support method overriding.
+- To achieve runtime polymorphism.
+- To create parent-child relationships between classes.
 
-## 3. Basic Inheritance Structure
-
-### Diagram
+## 2. Basic Inheritance Structure
 
 ```text
-          Parent Class
-               |
-          extends
-               |
-          Child Class
-               |
-       Inherited Members
+       ┌──────────────────────┐
+       │     Parent Class     │
+       │                      │
+       │   Properties         │
+       │   Methods            │
+       └──────────┬───────────┘
+                  │
+                  │ extends
+                  ↓
+       ┌──────────────────────┐
+       │     Child Class      │
+       │                      │
+       │ Inherited Properties │
+       │ Inherited Methods    │
+       │ Own Properties       │
+       │ Own Methods          │
+       └──────────────────────┘
 ```
 
-### Syntax
+## 3. Syntax of Inheritance
+
+The `extends` keyword is used to inherit one class from another class.
 
 ```java
 class Parent {
@@ -59,7 +60,7 @@ class Child extends Parent {
     }
 }
 
-public class TestInheritance {
+public class Test {
     public static void main(String[] args) {
         Child obj = new Child();
 
@@ -69,102 +70,44 @@ public class TestInheritance {
 }
 ```
 
-### Output
-
+**Output:**
 ```text
 Parent class method
 Child class method
 ```
 
-### Explanation
+**Explanation:**
 
-1. `Parent` is the superclass.
-2. `Child` is the subclass.
-3. The `extends` keyword establishes inheritance.
-4. The child class can access inherited accessible members of the parent class.
-5. The child class can also define its own methods and variables.
+- `Parent` is the parent class.
+- `Child` extends the `Parent` class.
+- The `Child` class can access the inherited `display()` method.
+- The child class can also define its own methods.
 
 ## 4. Types of Inheritance in Java
 
-Java supports three main types of class inheritance.
+Java supports the following types of inheritance through classes:
+
+1. Single Inheritance
+2. Multilevel Inheritance
+3. Hierarchical Inheritance
+
+Multiple and Hybrid inheritance are not directly supported through classes in Java. However, similar structures can be achieved using interfaces.
 
 ### 4.1 Single Inheritance
 
-One child class inherits from one parent class.
+In single inheritance, one child class inherits from one parent class.
 
-**Diagram:**
-
-```text
-       Vehicle
-          |
-        Car
-```
-
-**Example:**
-
-```java
-class Vehicle {
-    void start() {
-        System.out.println("Vehicle starts");
-    }
-}
-
-class Car extends Vehicle {
-    void drive() {
-        System.out.println("Car is driving");
-    }
-}
-```
-
-### 4.2 Multilevel Inheritance
-
-A class inherits from another child class, forming a chain of inheritance.
-
-**Diagram:**
+**Flowchart:**
 
 ```text
-        Vehicle
-           |
-          Car
-           |
-      ElectricCar
-```
-
-**Example:**
-
-```java
-class Vehicle {
-    void start() {
-        System.out.println("Vehicle starts");
-    }
-}
-
-class Car extends Vehicle {
-    void drive() {
-        System.out.println("Car is driving");
-    }
-}
-
-class ElectricCar extends Car {
-    void charge() {
-        System.out.println("Electric car is charging");
-    }
-}
-```
-
-ElectricCar can access the inherited accessible methods from both Car and Vehicle.
-
-### 4.3 Hierarchical Inheritance
-
-Multiple child classes inherit from the same parent class.
-
-**Diagram:**
-
-```text
-            Animal
-           /  |   \
-          /   |    \
-        Dog  Cat   Bird
+       ┌──────────────────┐
+       │   Parent Class   │
+       └────────┬─────────┘
+                │
+                ↓
+       ┌──────────────────┐
+       │   Child Class    │
+       └──────────────────┘
 ```
 
 **Example:**
@@ -172,111 +115,258 @@ Multiple child classes inherit from the same parent class.
 ```java
 class Animal {
     void eat() {
-        System.out.println("Animal eats");
+        System.out.println("Animal is eating");
     }
 }
 
 class Dog extends Animal {
     void bark() {
-        System.out.println("Dog barks");
+        System.out.println("Dog is barking");
+    }
+}
+
+public class TestAnimal {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+
+        d.eat();
+        d.bark();
+    }
+}
+```
+
+**Output:**
+```text
+Animal is eating
+Dog is barking
+```
+
+### 4.2 Multilevel Inheritance
+
+In multilevel inheritance, one class inherits from another class, and a third class inherits from the second class.
+
+**Flowchart:**
+
+```text
+       ┌──────────────────┐
+       │   Grandparent    │
+       │      Class       │
+       └────────┬─────────┘
+                │
+                ↓
+       ┌──────────────────┐
+       │   Parent Class   │
+       └────────┬─────────┘
+                │
+                ↓
+       ┌──────────────────┐
+       │   Child Class    │
+       └──────────────────┘
+```
+
+**Example:**
+
+```java
+class Grandparent {
+    void house() {
+        System.out.println("Grandparent has a house");
+    }
+}
+
+class Parent extends Grandparent {
+    void car() {
+        System.out.println("Parent has a car");
+    }
+}
+
+class Child extends Parent {
+    void bike() {
+        System.out.println("Child has a bike");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Child obj = new Child();
+
+        obj.house();
+        obj.car();
+        obj.bike();
+    }
+}
+```
+
+**Output:**
+```text
+Grandparent has a house
+Parent has a car
+Child has a bike
+```
+
+### 4.3 Hierarchical Inheritance
+
+In hierarchical inheritance, multiple child classes inherit from the same parent class.
+
+**Flowchart:**
+
+```text
+                ┌──────────────────┐
+                │   Parent Class   │
+                └────────┬─────────┘
+                         │
+              ┌──────────┴──────────┐
+              │                     │
+              ↓                     ↓
+     ┌────────────────┐    ┌────────────────┐
+     │  Child Class 1 │    │  Child Class 2 │
+     └────────────────┘    └────────────────┘
+```
+
+**Example:**
+
+```java
+class Animal {
+    void eat() {
+        System.out.println("Animal is eating");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog is barking");
     }
 }
 
 class Cat extends Animal {
     void meow() {
-        System.out.println("Cat meows");
+        System.out.println("Cat is meowing");
     }
 }
 
-class Bird extends Animal {
-    void fly() {
-        System.out.println("Bird flies");
+public class TestAnimal {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.eat();
+        d.bark();
+
+        Cat c = new Cat();
+        c.eat();
+        c.meow();
     }
 }
 ```
 
-All three child classes can use the accessible `eat()` method from Animal.
+**Output:**
+```text
+Animal is eating
+Dog is barking
+Animal is eating
+Cat is meowing
+```
 
-## 5. Multiple Inheritance in Java
+### 4.4 Multiple Inheritance
 
-Multiple inheritance means one child class inherits from two or more parent classes.
+In multiple inheritance, one child class inherits from more than one parent class.
 
-**Diagram:**
+**Flowchart:**
 
 ```text
-       Parent A       Parent B
-            \         /
-             \       /
-              \     /
-              Child
+       ┌──────────────────┐
+       │   Parent Class A │
+       └────────┬─────────┘
+                │
+                │
+                ├──────────────┐
+                               │
+                               ↓
+                      ┌────────────────┐
+                      │  Child Class   │
+                      └────────────────┘
+                               ↑
+                ┌──────────────┘
+                │
+       ┌────────┴─────────┐
+       │   Parent Class B │
+       └──────────────────┘
 ```
 
-Java does not support multiple inheritance through classes.
+Java does not support multiple inheritance using classes.
 
-### Why Does Java Not Support Multiple Inheritance Through Classes?
+**Reason:** It can create ambiguity when two parent classes contain methods with the same name and the child class inherits both.
 
-One important reason is the **Diamond Problem**.
+However, Java supports multiple inheritance through interfaces.
 
-## 6. What Is the Diamond Problem?
+### 4.5 Hybrid Inheritance
 
-The Diamond Problem is an ambiguity that can occur when a child class inherits the same method from two different parent classes.
+Hybrid inheritance is a combination of two or more types of inheritance.
 
-The compiler cannot automatically decide which parent's implementation should be used.
+Java does not support hybrid inheritance directly through classes. It can be implemented using interfaces.
 
-### Diamond Problem Diagram
+## 5. Diamond Problem in Java
+
+The Diamond Problem is an ambiguity problem that can occur in multiple inheritance.
+
+Consider a class `D` inheriting from two classes `B` and `C`, which both inherit from class `A`.
+
+**Flowchart:**
 
 ```text
-             A
-           /   \
-          /     \
-         B       C
-          \     /
-           \   /
-             D
+                ┌──────────────┐
+                │   Class A    │
+                └──────┬───────┘
+                       │
+              ┌────────┴────────┐
+              │                 │
+              ↓                 ↓
+       ┌──────────────┐  ┌──────────────┐
+       │   Class B    │  │   Class C    │
+       └──────┬───────┘  └──────┬───────┘
+              │                 │
+              └────────┬────────┘
+                       │
+                       ↓
+                ┌──────────────┐
+                │   Class D    │
+                └──────────────┘
 ```
 
-### How Does This Problem Occur?
+If classes `B` and `C` both provide the same method, class `D` may face ambiguity about which method to inherit.
 
-Consider the following example:
+Java avoids this problem by not supporting multiple inheritance through classes.
 
-- Class A contains a method called `display()`.
-- Class B inherits from A.
-- Class C also inherits from A.
-- Class D inherits from both B and C.
+### Diamond Problem Using Interfaces
 
-Now D may receive two inheritance paths to the same method.
+Java allows a class to implement multiple interfaces. If two interfaces provide the same default method, the implementing class must override that method.
 
-### Example of the Ambiguity
+**Flowchart:**
 
-```java
-class A {
-    void display() {
-        System.out.println("Class A");
-    }
-}
-
-class B extends A {
-}
-
-class C extends A {
-}
-
-// Not allowed in Java
-class D extends B, C {
-}
+```text
+       ┌────────────────────┐
+       │    Interface A    │
+       │                    │
+       │ default display()  │
+       └─────────┬──────────┘
+                 │
+                 │
+        ┌────────┴────────┐
+        │                 │
+        ↓                 ↓
+┌────────────────┐ ┌────────────────┐
+│  Interface B   │ │  Interface C   │
+│                │ │                │
+│ Same Method    │ │ Same Method    │
+└────────┬───────┘ └───────┬────────┘
+         │                 │
+         └────────┬────────┘
+                  │
+                  ↓
+       ┌────────────────────┐
+       │      Class D       │
+       │                    │
+       │ Overrides Method   │
+       │ Resolves Ambiguity │
+       └────────────────────┘
 ```
-
-The declaration `class D extends B, C` is invalid Java syntax.
-
-Java avoids this ambiguity by not allowing a class to extend multiple classes.
-
-### How Does Java Handle Multiple Inheritance?
-
-Java supports multiple inheritance through interfaces.
-
-If two interfaces contain the same abstract method, the implementing class can provide one implementation.
-
-If two interfaces provide the same default method, the implementing class must resolve the conflict by overriding that method.
 
 **Example:**
 
@@ -294,7 +384,6 @@ interface B {
 }
 
 class C implements A, B {
-
     @Override
     public void display() {
         A.super.display();
@@ -310,39 +399,49 @@ public class Test {
 }
 ```
 
-### Output
-
+**Output:**
 ```text
 Interface A
 Interface B
 ```
 
-**Important:** Java allows a class to implement multiple interfaces, but conflicting default methods must be resolved explicitly.
+**Explanation:**
 
-## 7. Important Keywords Used in Inheritance
+- Interface `A` contains a default method named `display()`.
+- Interface `B` also contains a default method named `display()`.
+- Class `C` implements both interfaces.
+- Class `C` overrides the `display()` method to resolve the conflict.
+- `A.super.display()` and `B.super.display()` call the respective interface default methods.
 
-| Keyword | Purpose |
-|---|---|
-| `extends` | Used to inherit a class. |
-| `implements` | Used to implement one or more interfaces. |
-| `super` | Used to access parent class constructors and members. |
-| `this` | Refers to the current object. |
+## 6. Important Keywords Used in Inheritance
 
-### 7.1 super Keyword
+### 6.1 extends
 
-The `super` keyword refers to the immediate parent class object context.
-
-It is commonly used for:
-
-- Accessing parent class variables.
-- Calling parent class methods.
-- Calling parent class constructors using `super()`.
-
-### Example
+The `extends` keyword is used when one class inherits another class.
 
 ```java
 class Parent {
-    int value = 100;
+}
+
+class Child extends Parent {
+}
+```
+
+### 6.2 super
+
+The `super` keyword refers to the immediate parent class object.
+
+It is used to:
+
+- Access parent class variables.
+- Call parent class methods.
+- Call parent class constructors.
+
+**Example:**
+
+```java
+class Parent {
+    int number = 10;
 
     void display() {
         System.out.println("Parent method");
@@ -350,35 +449,33 @@ class Parent {
 }
 
 class Child extends Parent {
-    int value = 200;
+    int number = 20;
 
     void show() {
-        System.out.println(super.value);
+        System.out.println(super.number);
         super.display();
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Child obj = new Child();
+        obj.show();
     }
 }
 ```
 
-## 8. Constructor Execution in Inheritance
-
-When a child class object is created, the parent class constructor executes before the child class constructor.
-
-**Flow Diagram:**
-
+**Output:**
 ```text
-Create Child Object
-        |
-        v
-Parent Constructor
-        |
-        v
-Child Constructor
-        |
-        v
-Object Creation Complete
+10
+Parent method
 ```
 
-### Example
+### 6.3 super() Constructor
+
+The `super()` statement is used to call the parent class constructor.
+
+**Example:**
 
 ```java
 class Parent {
@@ -389,6 +486,7 @@ class Parent {
 
 class Child extends Parent {
     Child() {
+        super();
         System.out.println("Child Constructor");
     }
 }
@@ -400,134 +498,233 @@ public class Test {
 }
 ```
 
-### Output
-
+**Output:**
 ```text
 Parent Constructor
 Child Constructor
 ```
 
-**Note:** If no explicit constructor invocation is written, Java inserts an implicit `super()` call when the parent has an accessible no-argument constructor.
+## 7. Constructor Execution in Inheritance
 
-## 9. Method Overriding in Inheritance
+When we create a child class object, the parent class constructor executes first, followed by the child class constructor.
 
-Method overriding occurs when a child class provides its own implementation of an inherited method with the same method signature.
-
-### Diagram
+**Flowchart:**
 
 ```text
-        Parent Class
-        display()
-             |
-             |
-        Child Class
-        display()
-        (Overridden)
+       ┌────────────────────────────┐
+       │    Create Child Object     │
+       └─────────────┬──────────────┘
+                     │
+                     ↓
+       ┌────────────────────────────┐
+       │ Parent Constructor Executes│
+       └─────────────┬──────────────┘
+                     │
+                     ↓
+       ┌────────────────────────────┐
+       │ Child Constructor Executes │
+       └─────────────┬──────────────┘
+                     │
+                     ↓
+       ┌────────────────────────────┐
+       │ Object Initialization      │
+       │        Completes           │
+       └────────────────────────────┘
 ```
 
-### Example
+**Important Points:**
+
+- Constructors are not inherited.
+- Parent constructors execute before child constructors.
+- If we do not explicitly write `super()`, Java inserts an implicit no-argument `super()` call when applicable.
+- A parent class constructor must be accessible to the child constructor.
+
+## 8. Method Overriding in Inheritance
+
+Method overriding occurs when a child class provides its own implementation of a method already defined in the parent class.
+
+**Flowchart:**
+
+```text
+       ┌────────────────────────────┐
+       │       Parent Class         │
+       │                            │
+       │       display()            │
+       │       "Parent Method"      │
+       └─────────────┬──────────────┘
+                     │
+                     ↓
+       ┌────────────────────────────┐
+       │       Child Class          │
+       │                            │
+       │ Overrides display()        │
+       │ "Child Method"             │
+       └─────────────┬──────────────┘
+                     │
+                     ↓
+       ┌────────────────────────────┐
+       │   Child Object Calls       │
+       │       display()            │
+       └─────────────┬──────────────┘
+                     │
+                     ↓
+       ┌────────────────────────────┐
+       │   Child Method Executes    │
+       └────────────────────────────┘
+```
+
+**Example:**
 
 ```java
-class Animal {
-    void sound() {
-        System.out.println("Animal makes a sound");
+class Parent {
+    void display() {
+        System.out.println("Parent method");
     }
 }
 
-class Dog extends Animal {
+class Child extends Parent {
     @Override
-    void sound() {
-        System.out.println("Dog barks");
+    void display() {
+        System.out.println("Child method");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Child obj = new Child();
+        obj.display();
     }
 }
 ```
 
-Method overriding is an important part of runtime polymorphism.
+**Output:**
+```text
+Child method
+```
 
-## 10. Advantages of Inheritance
+**Important Points:**
+
+- Method name must be the same.
+- Parameters must be the same.
+- The return type must be the same or compatible through a covariant return type.
+- The child class provides a new implementation.
+- The `@Override` annotation helps the compiler check overriding.
+
+## 9. Access Modifiers in Inheritance
+
+Access modifiers control the visibility of class members.
+
+| Modifier | Same Class | Same Package | Subclass in Other Package | Other Package |
+|---|---|---|---|---|
+| private | Yes | No | No | No |
+| default | Yes | Yes | No | No |
+| protected | Yes | Yes | Yes, subject to access rules | No |
+| public | Yes | Yes | Yes | Yes |
+
+**Important:**
+
+- Private members are not directly accessible in child classes.
+- Default members are accessible within the same package.
+- Protected members are accessible in subclasses, including subclasses in other packages, subject to Java's protected-access rules.
+- Public members are accessible wherever the class itself is accessible.
+
+## 10. Real-Time Example of Inheritance
+
+Consider an employee management system.
+
+A `Person` class contains common details such as name and age. The `Employee` class inherits these details and adds employee-specific information.
+
+**Flowchart:**
+
+```text
+       ┌────────────────────────────┐
+       │        Person              │
+       │                            │
+       │       name                 │
+       │       age                  │
+       │       displayDetails()     │
+       └─────────────┬──────────────┘
+                     │
+                     │ extends
+                     ↓
+       ┌────────────────────────────┐
+       │        Employee            │
+       │                            │
+       │       employeeId           │
+       │       salary               │
+       │       displaySalary()      │
+       └────────────────────────────┘
+```
+
+This approach avoids writing common person details again in the employee class.
+
+## 11. Advantages of Inheritance
 
 - Code reusability.
-- Reduced code duplication.
-- Easy extension of existing classes.
-- Better organization of related classes.
+- Less code duplication.
+- Easy maintenance.
+- Supports method overriding.
 - Supports runtime polymorphism.
-- Improves maintainability when used appropriately.
+- Helps create a logical class hierarchy.
 
-## 11. Limitations of Inheritance
+## 12. Limitations of Inheritance
 
-- Creates dependency between parent and child classes.
+- Creates tight coupling between parent and child classes.
 - Changes in the parent class may affect child classes.
-- Deep inheritance hierarchies can become difficult to understand.
-- Inheritance should be used only when a proper parent-child relationship exists.
-- Poorly designed inheritance can make applications difficult to maintain.
+- Deep inheritance hierarchies can become difficult to maintain.
+- Incorrect inheritance relationships can make code confusing.
+- Java does not support multiple inheritance through classes.
 
-## 12. Real-World Applications
+## 13. Inheritance vs Composition
 
-Inheritance is commonly used in:
+| Inheritance | Composition |
+|---|---|
+| Represents an IS-A relationship | Represents a HAS-A relationship |
+| Uses `extends` | Uses object references |
+| Child inherits parent functionality | One class uses another class object |
+| Creates a parent-child relationship | Creates a whole-part or usage relationship |
 
-- Banking applications.
-- E-commerce applications.
-- Employee management systems.
-- Vehicle management systems.
-- Animal classification systems.
-- Shape and drawing applications.
-- Enterprise applications.
+**Example:**
 
-### Real-World Example: Employee Management
-
-```text
-              Person
-                |
-             Employee
-                |
-              Manager
-```
-
-Person contains common details such as name and age.
-
-Employee inherits Person details and adds employee ID and salary.
-
-Manager inherits Employee details and adds manager-specific responsibilities.
-
-This avoids repeating common properties in every class.
-
-## 13. Project Structure
-
-This project contains multiple packages with practical inheritance examples.
-
-```text
-Inheritance/
-│
-└── src/
-    └── com/
-        └── te/
-            ├── inheritance/
-            ├── inheritance1/
-            ├── inheritance2/
-            ├── inheritance3/
-            └── inheritance4/
-```
-
-Each package contains Java programs demonstrating inheritance using different examples such as vehicles, employees, animals, shapes, banking accounts, and workers.
-
-Refer to the Java source files in each package for implementation examples.
+- Dog IS-A Animal — Inheritance.
+- Car HAS-A Engine — Composition.
 
 ## 14. Learning Outcomes
 
-After completing this project, you will be able to:
+After completing this topic, we should be able to:
 
 - Understand inheritance in Java.
 - Identify parent and child classes.
-- Implement inheritance using the `extends` keyword.
-- Understand single, multilevel, and hierarchical inheritance.
-- Explain why Java does not support multiple class inheritance.
+- Use the `extends` keyword.
+- Understand different types of inheritance.
+- Explain why Java does not support multiple inheritance through classes.
 - Understand the Diamond Problem.
-- Implement multiple interfaces.
-- Use the `super` keyword.
-- Understand constructor execution order.
+- Use interfaces to implement multiple inheritance-like structures.
+- Understand `super` and `super()`.
+- Explain constructor execution order.
 - Implement method overriding.
-- Apply inheritance to real-world applications.
+- Identify suitable inheritance relationships in real-world applications.
 
-## Author
+## 15. Practice Questions
 
-Sri Dhanya
+1. What is inheritance in Java?
+2. What is the difference between a parent class and a child class?
+3. Which keyword is used to achieve inheritance?
+4. What are the types of inheritance supported through classes in Java?
+5. Does Java support multiple inheritance through classes? Why?
+6. What is the Diamond Problem?
+7. How can Java achieve multiple inheritance using interfaces?
+8. What is the purpose of the `super` keyword?
+9. What is the difference between `super` and `super()`?
+10. Are constructors inherited in Java?
+11. Which constructor executes first when a child object is created?
+12. What is method overriding?
+13. What is the purpose of the `@Override` annotation?
+14. Can private methods be directly accessed in a child class?
+15. What is the difference between inheritance and composition?
+
+---
+
+**Conclusion**
+
+Inheritance is an important OOP concept in Java that promotes code reusability and supports method overriding. It helps developers create relationships between classes and build maintainable applications.
